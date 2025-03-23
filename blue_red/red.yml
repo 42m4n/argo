@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: red-dmt
- namespace: color
+ namespace: color-dir
  labels:
    dp: red
 spec:
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: red-srv
-  namespace: color
+  namespace: color-dir
 spec:
   selector:
     color: red
