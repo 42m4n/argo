@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blue
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ingress.com
+      http:
+        paths:
+        - path: /blue(/|$)(.*)
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: blue-srv
+              port:
+                number: 80
+        - path: /red(/|$)(.*)
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: red-srv
+              port:
+                number: 80
